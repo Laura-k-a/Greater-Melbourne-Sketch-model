@@ -1,0 +1,65 @@
+
+Call:
+lm(formula = ln_uncensored_0.1_Pat ~ X2ln.ln_Emp + X3_Popden + 
+    X6_PropComm + X9_LUEntropy + X10_HousingDiv + X11_IntDensity + 
+    X13_DestScore + X15_Parkiteer + X16_CBDDist + X17_ACDist + 
+    X18_ACCount + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + 
+    X24_O_Bus_LOS + X26_O_Train_LOS + X28_Censored_PropFTE + 
+    X29_Censored_MeanSize + X31_PropOS + X32_PropBach, data = bus_sketch.rd2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.5848 -0.6229  0.0739  0.6972  7.3110 
+
+Coefficients:
+                           Estimate  Standardized    Std. Error t value
+(Intercept)           -6.9169168374  0.0000000000  0.2829104190 -24.449
+X2ln.ln_Emp            0.1135332139  0.0945676093  0.0141121719   8.045
+X3_Popden              0.0000319534  0.0293731394  0.0000129341   2.470
+X6_PropComm            0.4187854378  0.0463046951  0.0836092824   5.009
+X9_LUEntropy           0.4471831317  0.0474456301  0.0880217992   5.080
+X10_HousingDiv        -0.0351262283 -0.0353689001  0.0109512829  -3.207
+X11_IntDensity         0.0017354301  0.0372949429  0.0003954056   4.389
+X13_DestScore          0.1019803965  0.0988306159  0.0095334882  10.697
+X15_Parkiteer          0.6314122271  0.0347636651  0.1678606248   3.762
+X16_CBDDist            0.0128064930  0.1038647742  0.0014452867   8.861
+X17_ACDist             0.0274211143  0.0469964760  0.0058127642   4.717
+X18_ACCount            0.2330890923  0.0269886772  0.0677987646   3.438
+X19_PropUrban          0.6430583840  0.0973211779  0.0695366432   9.248
+X20_EmpAccess         -0.0000010226 -0.0341190155  0.0000003116  -3.282
+X23_C_ln_LOS           1.0950272171  0.5800173201  0.0151809639  72.132
+X24_O_Bus_LOS         -0.0449618658 -0.0153608036  0.0211573365  -2.125
+X26_O_Train_LOS        0.8801108575  0.0750346506  0.1105304541   7.963
+X28_Censored_PropFTE   1.6352205983  0.0399053075  0.3178702635   5.144
+X29_Censored_MeanSize  0.1325961772  0.0285766395  0.0419108172   3.164
+X31_PropOS             1.4804746902  0.1327693315  0.1053834473  14.048
+X32_PropBach           0.7804745026  0.0725195724  0.1128511743   6.916
+                                  Pr(>|t|)    
+(Intercept)           < 0.0000000000000002 ***
+X2ln.ln_Emp           0.000000000000000966 ***
+X3_Popden                         0.013511 *  
+X6_PropComm           0.000000557486523992 ***
+X9_LUEntropy          0.000000383896068581 ***
+X10_HousingDiv                    0.001343 ** 
+X11_IntDensity        0.000011511482176904 ***
+X13_DestScore         < 0.0000000000000002 ***
+X15_Parkiteer                     0.000170 ***
+X16_CBDDist           < 0.0000000000000002 ***
+X17_ACDist            0.000002423027831310 ***
+X18_ACCount                       0.000589 ***
+X19_PropUrban         < 0.0000000000000002 ***
+X20_EmpAccess                     0.001035 ** 
+X23_C_ln_LOS          < 0.0000000000000002 ***
+X24_O_Bus_LOS                     0.033602 *  
+X26_O_Train_LOS       0.000000000000001879 ***
+X28_Censored_PropFTE  0.000000273899586478 ***
+X29_Censored_MeanSize             0.001562 ** 
+X31_PropOS            < 0.0000000000000002 ***
+X32_PropBach          0.000000000004947868 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.096 on 9462 degrees of freedom
+Multiple R-squared:  0.5247,	Adjusted R-squared:  0.5237 
+F-statistic: 522.2 on 20 and 9462 DF,  p-value: < 0.00000000000000022
+
