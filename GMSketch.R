@@ -203,29 +203,36 @@ capture.output(summary(bus.LM.1), file = "bus.LM.1.txt")
 #X27_O_LOS
 #X32_PropBach
 
-tram.VIF<-vif(lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore+ X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch))
+tram.VIF<-vif(lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore+ X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + X19_PropUrban + X20_EmpAccess + X23_C_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch))
 
 tram.VIF#ln_emp is 12 -> remove (probably colinear with FTZ and CBD dist)
 #Emp access still high a 5.6. Keep for now
 
-tram.LM.1.1<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch)
+tram.LM.1.1<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + + X19_PropUrban + X20_EmpAccess + X23_C_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch)
 
 tram.LM.1.1<-lm.beta(tram.LM.1.1)
-summary(tram.LM.1.1) #R2 = 0.6629
+summary(tram.LM.1.1) #R2 = 0.6033
 capture.output(summary(tram.LM.1.1), file = "tram.LM.1.MA.txt")
 
 ###'removed in order
 ###'Emp access
-###'mean size
-###'ACCount
+###'O_Tram_LOS
+###'AC_Dist
+###'Prop_FTE
 ###'FTZ
-###'ACDist
-###'PropFTE
-###'CBDDist
-tram.LM.1<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore +X19_PropUrban + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS	+X31_PropOS, data =tram_sketch)
+###'PopDen
+###'AC Count
+###'CBD Dist
+###'Housing Div
+###'LUEntropy
+###'propUrban
+###'PropOS
+
+
+tram.LM.1<-lm(ln_uncensored_0.1_Pat ~ X6_PropComm + X8_Balance  +X11_IntDensity + X12_CycleConnect + X13_DestScore + X23_C_LOS + X24_O_Bus_LOS + X26_O_Train_LOS	+ X29_Censored_MeanSize, data =tram_sketch)
 
 tram.LM.1<-lm.beta(tram.LM.1)
-summary(tram.LM.1) #R2 = 0.6651
+summary(tram.LM.1) #R2 = 0.6067
  
 
 plot(tram.LM.1)
@@ -244,20 +251,19 @@ tram.LM.2.1<-lm.beta(tram.LM.2.1)
 summary(tram.LM.2.1) #R2 = 0.7017
 
 ###'removed in order
-###'Mean size
+###'mean size
+###'CBDDist
+###'emp access
 ###'ACDist
 ###'ACCount
-###'CBD Dist
-###'Emp Access
-###'housing div
-###'FTE
-tram.LM.2<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X11_IntDensity + X12_CycleConnect + X13_DestScore +  X21._FTZ + + X19_PropUrban + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X31_PropOS, data =tram_sketch.rd2)
+###'Housing Div
+
+tram.LM.2<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X11_IntDensity + X12_CycleConnect + X13_DestScore + X21._FTZ + + X19_PropUrban +X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X31_PropOS, data =tram_sketch.rd2)
 
 tram.LM.2<-lm.beta(tram.LM.2)
 summary(tram.LM.2) #R2 = 0.7032
 
 plot(tram.LM.2)
-
 
 tram.LM.2.vif<-vif(tram.LM.2)
 tram.LM.2.vif #fine
