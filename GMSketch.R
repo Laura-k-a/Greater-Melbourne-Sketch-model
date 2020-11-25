@@ -113,7 +113,7 @@ Melb.all.LM.vif #ln_emp high -> remove
 Melb.all.LM.1.1<-lm(ln_uncensored_0.1_Pat ~  X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X15_Parkiteer + X16_CBDDist + X17_ACDist+ X18_ACCount + X21._FTZ + X22.Parking_m.2 + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS + X32_PropBach, data =Allmodes.sample)
 
 Melb.all.LM.1.1<-lm.beta(Melb.all.LM.1.1)
-summary(Melb.all.LM.1.1) #R2 = 0.7321
+summary(Melb.all.LM.1.1) #R2 = 0.7217
 
 ###'removed in order
 ###'FTE
@@ -126,33 +126,35 @@ summary(Melb.all.LM.1.1) #R2 = 0.7321
 Melb.all.LM.1<-lm(ln_uncensored_0.1_Pat ~  X3_Popden+ X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X15_Parkiteer + X16_CBDDist + X18_ACCount + X21._FTZ + X22.Parking_m.2 + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS+ X26_O_Train_LOS	+ X29_Censored_MeanSize, data =Allmodes.sample)
 
 Melb.all.LM.1<-lm.beta(Melb.all.LM.1)
-summary(Melb.all.LM.1) #R2 = 0.7335
+summary(Melb.all.LM.1) #R2 = 0.7218
 
 plot(Melb.all.LM.1)
 
-which(rownames(Allmodes.sample) == "221-train-800") #199
-which(rownames(Allmodes.sample) == "219-train-800") #195
-which(rownames(Allmodes.sample) == "220-train-800") #198
+which(rownames(Allmodes.sample) == "221-train-800") #195
+which(rownames(Allmodes.sample) == "219-train-800") #191
+which(rownames(Allmodes.sample) == "220-train-800") #194
 which(rownames(Allmodes.sample) == "4455-bus-400") #335
 #remove potentially influential outliers 
-Allmodes.sample.rd2<- Allmodes.sample[-c(199, 195, 198, 335),]
+Allmodes.sample.rd2<- Allmodes.sample[-c(195, 191, 194, 326),]
 
 #rd 2
 Melb.all.LM.2.1<-lm(ln_uncensored_0.1_Pat ~  X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X15_Parkiteer + X16_CBDDist + X17_ACDist+ X18_ACCount + X21._FTZ + X22.Parking_m.2 + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS + X32_PropBach, data =Allmodes.sample.rd2)
 
 Melb.all.LM.2.1<-lm.beta(Melb.all.LM.2.1)
-summary(Melb.all.LM.2.1) #R2 = 0.7664
+summary(Melb.all.LM.2.1) #R2 = 0.7567
 
 ###'removed in order
+###'AC Dist
 ###'PropOS
-###'ACDist
 ###'Balance
-###'PropFTE
-###'Comm
-Melb.all.LM.2.1<-lm(ln_uncensored_0.1_Pat ~  X3_Popden+ X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X15_Parkiteer + X16_CBDDist +  X18_ACCount + X21._FTZ + X22.Parking_m.2 + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS	+ X29_Censored_MeanSize + X32_PropBach, data =Allmodes.sample.rd2)
+###'ACCount
+###'HousingDiv
+###'PropComm
+
+Melb.all.LM.2.1<-lm(ln_uncensored_0.1_Pat ~  X3_Popden+ X9_LUEntropy+X11_IntDensity + X12_CycleConnect + X13_DestScore + X15_Parkiteer + X16_CBDDist + X21._FTZ + X22.Parking_m.2 + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize +X32_PropBach, data =Allmodes.sample.rd2)
 
 Melb.all.LM.2.1<-lm.beta(Melb.all.LM.2.1)
-summary(Melb.all.LM.2.1) #R2 = 0.7676
+summary(Melb.all.LM.2.1) #R2 = 0.7581
 
 plot(Melb.all.LM.2.1)
 
@@ -170,7 +172,7 @@ bus.VIF<-vif(lm(ln_uncensored_0.1_Pat ~ X2ln.ln_Emp + X3_Popden+ X6_PropComm + X
 bus.VIF #ok
 
 #maximally adjusted model
-bus.LM.1.1<-lm(ln_uncensored_0.1_Pat ~ X2ln.ln_Emp + X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X15_Parkiteer + X16_CBDDist + X17_ACDist + X18_ACCount + X22.Parking_m.2 + X19_PropUrban + X20_EmpAccess + X23_C_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS + X32_PropBach, data =bus_sketch)
+bus.LM.1.1<-lm(ln_uncensored_0.1_Pat ~ X2ln.ln_Emp + X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X15_Parkiteer + X16_CBDDist + X17_ACDist + X18_ACCount + X22.Parking_m.2 + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS + X32_PropBach, data =bus_sketch)
 
 bus.LM.1.1<-lm.beta(bus.LM.1.1)
 summary(bus.LM.1.1) #R2 = 0.524
@@ -184,17 +186,17 @@ capture.output(summary(bus.LM.1.1), file = "bus.LM.1.MA.txt")
 ###'parking
 ###'Tram_O_LoS
 ###'Balance
-bus.LM.1<-lm(ln_uncensored_0.1_Pat ~ X2ln.ln_Emp + X3_Popden+ X6_PropComm + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X13_DestScore + X15_Parkiteer + X16_CBDDist + X17_ACDist + X18_ACCount + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS + X32_PropBach, data =bus_sketch.rd2)
+bus.LM.1<-lm(ln_uncensored_0.1_Pat ~ X2ln.ln_Emp + X3_Popden+ X6_PropComm + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X13_DestScore + X15_Parkiteer + X16_CBDDist + X17_ACDist + X18_ACCount + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS +X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS + X32_PropBach, data =bus_sketch)
 
 bus.LM.1<-lm.beta(bus.LM.1)
-summary(bus.LM.1) #R2 = 0.5237
+summary(bus.LM.1) #R2 = 0.524
 
 plot(bus.LM.1)
 
 bus.LM.1.VIF<-vif(bus.LM.1)
 bus.LM.1.VIF
 capture.output(bus.LM.1.VIF, file = "bus.LM.1.vif.txt")
-capture.output(summary(bus.LM.1), file = "bus.LM.1.txt")
+capture.output(summary(bus.LM.1), file = "bus.LM.1.PM.txt")
 
 #tram
 #NS for tram (from corr matrix):
@@ -203,37 +205,31 @@ capture.output(summary(bus.LM.1), file = "bus.LM.1.txt")
 #X27_O_LOS
 #X32_PropBach
 
-tram.VIF<-vif(lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore+ X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + X19_PropUrban + X20_EmpAccess + X23_C_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch))
+tram.VIF<-vif(lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore+ X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch))
 
 tram.VIF#ln_emp is 12 -> remove (probably colinear with FTZ and CBD dist)
-#Emp access still high a 5.6. Keep for now
+#Emp access, Prop OS still high a 5.6/5.9 Keep for now
 
-tram.LM.1.1<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + + X19_PropUrban + X20_EmpAccess + X23_C_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch)
+tram.LM.1.1<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch)
 
 tram.LM.1.1<-lm.beta(tram.LM.1.1)
-summary(tram.LM.1.1) #R2 = 0.6033
+summary(tram.LM.1.1) #R2 = 0.6629
 capture.output(summary(tram.LM.1.1), file = "tram.LM.1.MA.txt")
 
 ###'removed in order
-###'Emp access
-###'O_Tram_LOS
-###'AC_Dist
-###'Prop_FTE
+###'EmpAccess
+###'Meansize
 ###'FTZ
-###'PopDen
-###'AC Count
-###'CBD Dist
-###'Housing Div
-###'LUEntropy
-###'propUrban
-###'PropOS
+###'ACCount
+###'ACDist
+###'PropFTE
+###'HousingDiv
+###'CBDDist
 
-
-tram.LM.1<-lm(ln_uncensored_0.1_Pat ~ X6_PropComm + X8_Balance  +X11_IntDensity + X12_CycleConnect + X13_DestScore + X23_C_LOS + X24_O_Bus_LOS + X26_O_Train_LOS	+ X29_Censored_MeanSize, data =tram_sketch)
+tram.LM.1<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy  +X11_IntDensity + X12_CycleConnect + X13_DestScore +X19_PropUrban + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X31_PropOS, data =tram_sketch)
 
 tram.LM.1<-lm.beta(tram.LM.1)
-summary(tram.LM.1) #R2 = 0.6067
- 
+summary(tram.LM.1) #R2 = 0.6649
 
 plot(tram.LM.1)
 
@@ -242,7 +238,7 @@ which(rownames(tram_sketch) == "127-tram") #1
 which(rownames(tram_sketch) == "170-tram") #712
 which(rownames(tram_sketch) == "204-tram") #710
 #remove potentially influential outliers 
-tram_sketch.rd2<- tram_sketch[-c(1, 712, 710),]
+tram_sketch.rd2<- tram_sketch[-c(1, 710, 712),]
 
 #tram rd. 2
 tram.LM.2.1<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X10_HousingDiv +X11_IntDensity + X12_CycleConnect + X13_DestScore + X16_CBDDist + X17_ACDist + X18_ACCount + X21._FTZ + + X19_PropUrban + X20_EmpAccess + X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X28_Censored_PropFTE	+ X29_Censored_MeanSize + X31_PropOS, data =tram_sketch.rd2)
@@ -253,15 +249,18 @@ summary(tram.LM.2.1) #R2 = 0.7017
 ###'removed in order
 ###'mean size
 ###'CBDDist
-###'emp access
 ###'ACDist
 ###'ACCount
-###'Housing Div
+###'EmpAccess
+###'HousingDiv
+###'PropFTE
 
-tram.LM.2<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy + X11_IntDensity + X12_CycleConnect + X13_DestScore + X21._FTZ + + X19_PropUrban +X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS + X31_PropOS, data =tram_sketch.rd2)
+
+tram.LM.2<-lm(ln_uncensored_0.1_Pat ~ X3_Popden+ X6_PropComm + X8_Balance + X9_LUEntropy +X11_IntDensity + X12_CycleConnect + X13_DestScore  + X21._FTZ + + X19_PropUrban +X23_C_ln_LOS + X24_O_Bus_LOS + X25_O_Tram_LOS + X26_O_Train_LOS	+X31_PropOS, data =tram_sketch.rd2)
 
 tram.LM.2<-lm.beta(tram.LM.2)
 summary(tram.LM.2) #R2 = 0.7032
+
 
 plot(tram.LM.2)
 
@@ -356,7 +355,7 @@ rmse_all<-sqrt(mean(residuals(Melb.all.LM.1.5)^2))
 rmse_all
 
 #RMSE for within-sample models
-Melb.bus.predictions <- predict(Melb.all.LM.2.1, bus_sketch.rd2)
+Melb.bus.predictions <- predict(Melb.all.LM.2.1, bus_sketch)
 rmse_Melb.bus.predictions<-rmse(bus_sketch$ln_uncensored_0.1_Pat, Melb.bus.predictions)
 rmse_Melb.bus.predictions
 
